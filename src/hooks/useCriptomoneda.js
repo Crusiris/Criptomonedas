@@ -23,7 +23,7 @@ font-size:1.2rem;
 `;
 
 const useCriptomoneda = (label, stateInitial, optionsCripto) => {
-
+    console.log(optionsCripto)
     //State de nuestro hook
     const [ state, updateState ] = useState(stateInitial);
 
@@ -35,10 +35,10 @@ const useCriptomoneda = (label, stateInitial, optionsCripto) => {
             onChange={e => updateState(e.target.value)}
             value={state}
             >
-                {/* <option value=""> --- Seleccione Criptomoneda ---</option>
-                {optionsCurrency.map(option =>(
-                    <option key={option.code} value={option.code}>{option.name}</option>
-                ))} */}
+                <option value=""> --- Seleccione Criptomoneda ---</option>
+                {optionsCripto.map(option =>(
+                    <option key={option.CoinInfo.Id} value={option.CoinInfo.Name}>{option.CoinInfo.FullName}</option>
+                ))}
             </Select>
         </Fragment>
 
