@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import useCurrency from '../hooks/useCurrency'
+import useCurrency from '../hooks/useCurrency';
+import useCriptomoneda from '../hooks/useCriptomoneda';
 
 const Button = styled.input`
 margin-top:20px;
@@ -22,7 +23,7 @@ transition:background-color .3s ease;
 
 const Formulario = () => {
 
-    const CURRENCY = [
+    const CURRENCY = [ 
         {code: 'USD', name: 'Dolar Estado Unidense'},
         {code: 'MXN', name: 'Peso Mexicano'},
         {code: 'EUR', name: 'Euro'},
@@ -31,12 +32,17 @@ const Formulario = () => {
         {code: 'CHL', name: 'Peso Chileno'},
     ]
 
-    //Destructurin del stateCurrency
-    const [currency, ToSelect] = useCurrency('Elige tu Moneda', '', CURRENCY);
+    //Destructuring del stateCurrency
+    const [stateCurrency, ToSelectCurrency] = useCurrency('Elige tu Moneda', '', CURRENCY);
+
+    //Destructuring del stateCriptomoneda
+    const [stateCripto, ToSelectCripto ] = useCriptomoneda('Elige tu Criptomoneda', '')
 
     return (
         <form>
-            <ToSelect/>
+            <ToSelectCurrency/>
+
+            <ToSelectCripto/>
 
             <Button
             type="submit"

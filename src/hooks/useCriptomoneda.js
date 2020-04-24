@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState} from 'react';
 import styled from '@emotion/styled';
 
 const Label = styled.label`
@@ -22,12 +22,12 @@ font-size:1.2rem;
 
 `;
 
-const useCurrency = (label, stateInitial, optionsCurrency) => {
+const useCriptomoneda = (label, stateInitial) => {
 
     //State de nuestro hook
     const [ state, updateState ] = useState(stateInitial);
 
-    const toSelect = ()=>(
+    const ToSelectCripto = ()=>(
 
         <Fragment>
             <Label>{label}</Label>
@@ -35,18 +35,18 @@ const useCurrency = (label, stateInitial, optionsCurrency) => {
             onChange={e => updateState(e.target.value)}
             value={state}
             >
-                <option value=""> --- Seleccione Moneda --- </option>
+                {/* <option value=""> --- Seleccione Criptomoneda ---</option>
                 {optionsCurrency.map(option =>(
                     <option key={option.code} value={option.code}>{option.name}</option>
-                ))}
+                ))} */}
             </Select>
         </Fragment>
 
     );
 
     //Retornando state, interfaz y fn que modifica el state
-    return [state, toSelect, updateState]
+    return [state, ToSelectCripto, updateState]
 }
 
 
-export default useCurrency;
+export default useCriptomoneda;
