@@ -9,7 +9,10 @@ const useCurrency = (label, stateInitial, optionsCurrency) => {
 
         <Fragment>
             <label>{label}</label>
-            <select>
+            <select
+            onChange={e => updateState(e.target.value)}
+            value={state}
+            >
                 <option value="">---Seleccione</option>
                 {optionsCurrency.map(option =>(
                     <option key={option.code} value={option.code}>{option.name}</option>

@@ -25,10 +25,10 @@ const Formulario = () => {
     const CURRENCY = [
         {code: 'USD', name: 'Dolar Estado Unidense'},
         {code: 'MXN', name: 'Peso Mexicano'},
-        {code: 'EUR', name: 'Euru'},
+        {code: 'EUR', name: 'Euro'},
         {code: 'GBP', name: 'Libra Esterlina'},
         {code: 'VEN', name: 'Bolivar'},
-        {code: 'CHL', name: 'Peeso Chileno'},
+        {code: 'CHL', name: 'Peso Chileno'},
     ]
 
     //Destructurin del stateCurrency
