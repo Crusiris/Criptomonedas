@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import styled from '@emotion/styled';
 import imagen from './cryptomonedas.png';
 import Formulario from './components/Formulario';
+import Quotation from './components/Quotation';
 
 
 const Container = styled.div`
@@ -40,11 +42,25 @@ const Heading = styled.h1`
 function App() {
 //State para guardar las elecciones de moneda y criptomonda del usuario al hacer click
   const [currency, saveCurrency]= useState('');
-  const [cripto, saveCripto]=useState('');
+  const [cripto, saveCripto]= useState('');
+
+//State para guardar el resultado que obtenemos de la data
+  const [result, saveResult]= useState({});
 
 useEffect(()=>{
-  //Evitando la ejecucion la primera vez
-  if(currency==='') return;
+ 
+  const quote = async () => {
+      //Evitando la ejecucion la primera vez porque esta vacio el state
+    if(currency==='') return;
+
+    //Consultando API
+    const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cripto}&tsyms=${currency}`
+    const result = await Axios.get(url);
+    saveResult(result.data.DISPLAY[cripto][currency]);
+  }
+
+  quote();
+
 },[currency, cripto])
 
   return (
@@ -59,6 +75,10 @@ useEffect(()=>{
       <Formulario
       saveCurrency= { saveCurrency }
       saveCripto= { saveCripto }
+      />
+
+      <Quotation
+       result= { result }
       />
     </div>
     </Container>
