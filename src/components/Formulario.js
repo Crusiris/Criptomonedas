@@ -26,6 +26,9 @@ const Formulario = () => {
     //State para la lista de criptomonedas
     const [ listCriptomonedas, saveCriptomonedas ] = useState([]);
 
+    //State para manejar los errores
+    const [ error, saveError ] = useState(false);
+
     const CURRENCY = [ 
         {code: 'USD', name: 'Dolar Estado Unidense'},
         {code: 'MXN', name: 'Peso Mexicano'},
@@ -57,8 +60,25 @@ const Formulario = () => {
     }, []);
     
 
+    //Funcion para cotizar moneda al hacer submit
+    const quote = e =>{
+        e.preventDefault();
+
+        //Validando que los campos no esten vacios
+        if(stateCurrency === '' || stateCripto === ''){
+            saveError(true);
+            return;
+        }
+
+        //Sino se pasan los datos al componenente app 
+        saveError(false);
+    }
+
     return (
-        <form>
+        <form
+        onSubmit={quote}
+        >
+            {error ? <p>Todos los campos soon obligatorios</p> : null }
             <ToSelectCurrency/>
 
             <ToSelectCripto/>
