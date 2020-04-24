@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
+import Axios from 'axios';
 import useCurrency from '../hooks/useCurrency';
 import useCriptomoneda from '../hooks/useCriptomoneda';
-import Axios from 'axios';
+import Error from './Error'
+
 
 const Button = styled.input`
 margin-top:20px;
@@ -78,7 +80,7 @@ const Formulario = () => {
         <form
         onSubmit={quote}
         >
-            {error ? <p>Todos los campos soon obligatorios</p> : null }
+            {error ? <Error message= 'Todos los campos son obligatorios'/> : null }
             <ToSelectCurrency/>
 
             <ToSelectCripto/>
