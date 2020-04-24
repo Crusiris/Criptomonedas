@@ -36,8 +36,7 @@ const Formulario = ({saveCurrency, saveCripto}) => {
         {code: 'MXN', name: 'Peso Mexicano'},
         {code: 'EUR', name: 'Euro'},
         {code: 'GBP', name: 'Libra Esterlina'},
-        {code: 'VEN', name: 'Bolivar'},
-        {code: 'CHL', name: 'Peso Chileno'},
+        {code: 'VEN', name: 'Bolivar'}
     ]
 
     //Destructuring del stateCurrency
