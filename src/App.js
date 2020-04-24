@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import imagen from './cryptomonedas.png';
 import Formulario from './components/Formulario';
+
 
 const Container = styled.div`
   max-width:900px;
@@ -37,6 +38,15 @@ const Heading = styled.h1`
 `;
 
 function App() {
+//State para guardar las elecciones de moneda y criptomonda del usuario al hacer click
+  const [currency, saveCurrency]= useState('');
+  const [cripto, saveCripto]=useState('');
+
+useEffect(()=>{
+  //Evitando la ejecucion la primera vez
+  if(currency==='') return;
+},[currency, cripto])
+
   return (
     <Container>
     <div>
@@ -46,7 +56,10 @@ function App() {
     </div>
     <div>
       <Heading>Cotiza Criptomonedas al Instante</Heading>
-      <Formulario/>
+      <Formulario
+      saveCurrency= { saveCurrency }
+      saveCripto= { saveCripto }
+      />
     </div>
     </Container>
   );

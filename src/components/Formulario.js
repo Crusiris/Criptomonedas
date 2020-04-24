@@ -24,7 +24,7 @@ transition:background-color .3s ease;
     }
 `;
 
-const Formulario = () => {
+const Formulario = ({saveCurrency, saveCripto}) => {
     //State para la lista de criptomonedas
     const [ listCriptomonedas, saveCriptomonedas ] = useState([]);
 
@@ -74,6 +74,9 @@ const Formulario = () => {
 
         //Sino se pasan los datos al componenente app 
         saveError(false);
+
+        saveCurrency(stateCurrency);
+        saveCripto(stateCripto);
     }
 
     return (
