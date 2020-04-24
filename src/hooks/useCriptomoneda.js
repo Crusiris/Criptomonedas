@@ -22,7 +22,7 @@ font-size:1.2rem;
 
 `;
 
-const useCriptomoneda = (label, stateInitial) => {
+const useCriptomoneda = (label, stateInitial, optionsCripto) => {
 
     //State de nuestro hook
     const [ state, updateState ] = useState(stateInitial);
