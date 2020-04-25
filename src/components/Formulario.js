@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import Axios from 'axios';
 import useCurrency from '../hooks/useCurrency';
 import useCriptomoneda from '../hooks/useCriptomoneda';
-import Error from './Error'
+import Error from './Error';
 
 
 const Button = styled.input`
@@ -95,5 +96,10 @@ const Formulario = ({saveCurrency, saveCripto}) => {
         </form>
       );
 }
- 
+
+Formulario.propTypes = {
+    saveCurrency: PropTypes.func.isRequired,
+    saveCripto: PropTypes.func.isRequired
+} 
+
 export default Formulario;
