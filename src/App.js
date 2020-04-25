@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import imagen from './cryptomonedas.png';
 import Formulario from './components/Formulario';
 import Quotation from './components/Quotation';
+import Spinner from './components/Spinner';
 
 
 const Container = styled.div`
@@ -47,6 +48,10 @@ function App() {
 //State para guardar el resultado que obtenemos de la data
   const [result, saveResult]= useState({});
 
+//State para spinner
+const [ spinner, setSpinner ] = useState(false);
+
+//Usando useEffect para consultas del API.
 useEffect(()=>{
  
   const quote = async () => {
@@ -56,12 +61,29 @@ useEffect(()=>{
     //Consultando API
     const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${cripto}&tsyms=${currency}`
     const result = await Axios.get(url);
-    saveResult(result.data.DISPLAY[cripto][currency]);
+
+     //Mostrando spinner
+     setSpinner(true);
+
+     //Utilizamon un setTime para agregar un poco de asincronia a la funcion y lograr que el spinner se vea un poco mas
+     setTimeout(()=>{
+
+       //Ocultando Spinner
+      setSpinner(false);
+      //Guardando cotizacion
+      saveResult(result.data.DISPLAY[cripto][currency]);
+
+     },3000)
+
+    
   }
 
   quote();
 
-},[currency, cripto])
+},[currency, cripto]);
+
+//Condicionamiento de componente
+const component = (spinner) ? <Spinner/> : <Quotation result= { result } />
 
   return (
     <Container>
@@ -77,9 +99,8 @@ useEffect(()=>{
       saveCripto= { saveCripto }
       />
 
-      <Quotation
-       result= { result }
-      />
+      { component }
+
     </div>
     </Container>
   );
